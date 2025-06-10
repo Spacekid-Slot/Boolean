@@ -1,0 +1,21 @@
+{
+    "company_name": "fnz",
+    "location": "london",
+    "company_website": "https://fnz.com",
+    "job_titles": [
+        "sales"
+    ],
+    "output_file": "fnz_london_employees.xlsx",
+    "temp_data_file": "temp_employee_data.json",
+    "processed_data_file": "processed_employee_data.json",
+    "verified_data_file": "verified_employee_data.json",
+    "pages_to_scrape": 2,
+    "debug_mode": false,
+    "review_mode": false,
+    "search_types": [
+        "linkedin",
+        "website"
+    ],
+    "timestamp": "2025-06-10 22:19:08",
+    "version": "2.1"
+}
