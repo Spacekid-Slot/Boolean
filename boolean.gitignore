@@ -1,0 +1,8 @@
+# Ignore ALL generated files
+*.json
+*.xlsx
+*.xls
+
+# Ignore Python cache
+__pycache__/
+*.pyc
