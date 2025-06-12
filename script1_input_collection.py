@@ -2,15 +2,7 @@
 """
 Enhanced Employee Discovery Toolkit - Input Configuration with Job Title Selection
 
-This script collects company information, validates inputs, and allows users
-to specify job titles to search for before launching the employee discovery process.
-
-FIXED ISSUES:
-- Job titles are now properly saved to configuration
-- Configuration validation ensures job titles are stored correctly
-- Proper script chaining to next step
-- Interactive workflow with clear confirmations
-- Fixed regex syntax errors
+COMPLETELY FIXED VERSION - All location handling bugs resolved
 """
 
 import json
@@ -36,6 +28,10 @@ class InputCollector:
     def __init__(self):
         self.script_dir = Path(__file__).parent.absolute()
         self.config_file = self.script_dir / "company_config.json"
+        
+        # Load LinkedIn locations database if available
+        self.locations_db_file = self.script_dir / "linkedin_locations_database.json"
+        self.locations_db = self._load_locations_database()
         
         # Default job titles categorized by type
         self.default_job_titles = {
@@ -74,6 +70,20 @@ class InputCollector:
             ]
         }
         
+    def _load_locations_database(self) -> dict:
+        """Load LinkedIn locations database if available."""
+        try:
+            if self.locations_db_file.exists():
+                with open(self.locations_db_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                logger.info("LinkedIn locations database loaded")
+                return data
+            else:
+                return {}
+        except Exception as e:
+            logger.warning(f"LinkedIn locations database unavailable: {e}")
+            return {}
+    
     def clear_screen(self):
         """Clear the terminal screen based on OS."""
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -82,10 +92,8 @@ class InputCollector:
         """Validate company name input."""
         if not name or len(name.strip()) < 2:
             return False
-        # Check for reasonable length and characters
         if len(name) > 100:
             return False
-        # Allow letters, numbers, spaces, and common business characters
         if not re.match(r'^[a-zA-Z0-9\s&\-.,()]+$', name):
             return False
         return True
@@ -96,7 +104,6 @@ class InputCollector:
             return False
         if len(location) > 50:
             return False
-        # Allow letters, spaces, and common location characters
         if not re.match(r'^[a-zA-Z\s\-,\']+$', location):
             return False
         return True
@@ -106,7 +113,6 @@ class InputCollector:
         if not website:
             return False
         
-        # Add protocol if missing
         if not website.startswith(('http://', 'https://')):
             website = 'https://' + website
         
@@ -114,7 +120,6 @@ class InputCollector:
             parsed = urlparse(website)
             if not parsed.netloc:
                 return False
-            # Basic domain validation
             if not re.match(r'^[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}$', parsed.netloc):
                 return False
             return True
@@ -130,11 +135,7 @@ class InputCollector:
     def check_dependencies(self) -> bool:
         """Check and install required packages."""
         required_packages = [
-            'requests',
-            'beautifulsoup4', 
-            'openpyxl',
-            'selenium',
-            'webdriver-manager'
+            'requests', 'beautifulsoup4', 'openpyxl', 'selenium', 'webdriver-manager'
         ]
         
         missing_packages = []
@@ -172,7 +173,6 @@ class InputCollector:
         
         for i, (category, titles) in enumerate(self.default_job_titles.items(), 1):
             print(f"\n{i}. {category}:")
-            # Show first few titles as examples
             sample_titles = titles[:4]
             print(f"   Examples: {', '.join(sample_titles)}")
             if len(titles) > 4:
@@ -187,12 +187,11 @@ class InputCollector:
         print("You can specify which job titles to search for to get more targeted results.")
         print("This will improve search accuracy and find more relevant employees.\n")
         
-        # Ask if user wants to select specific job titles
         use_custom = input("Do you want to select specific job titles to search for? (y/n, default: y): ").strip().lower()
         
         if use_custom in ['n', 'no']:
             print("Skipping job title selection - will use general search...")
-            return []  # Return empty list for general search
+            return []
         
         selected_titles = []
         
@@ -204,19 +203,16 @@ class InputCollector:
         choice = input("\nWhat would you like to do? (1/2/3, default: 1): ").strip()
         
         if choice in ['1', '3', '']:
-            # Category selection
             self.display_job_title_categories()
             
             print(f"\nSelect categories to include (e.g., '1,3,5' or 'all'):")
             category_input = input("Categories: ").strip().lower()
             
             if category_input == 'all':
-                # Add all titles
                 for titles in self.default_job_titles.values():
                     selected_titles.extend(titles)
                 print(f"Added all {len(selected_titles)} job titles")
             else:
-                # Parse category numbers
                 try:
                     category_nums = [int(x.strip()) for x in category_input.split(',') if x.strip()]
                     categories = list(self.default_job_titles.items())
@@ -230,11 +226,9 @@ class InputCollector:
                             print(f"Invalid category number: {num}")
                 except ValueError:
                     print("Invalid input format. Using some default titles.")
-                    # Add a few common titles as fallback
                     selected_titles = ["Manager", "Director", "CEO", "CFO", "CTO"]
         
         if choice in ['2', '3']:
-            # Custom title entry
             print(f"\nEnter custom job titles (one per line, empty line to finish):")
             print("Examples: 'Software Engineer', 'Product Manager', 'HR Director'")
             
@@ -248,7 +242,6 @@ class InputCollector:
                 else:
                     print(f"Already added: {custom_title}")
         
-        # Remove duplicates and sort
         selected_titles = sorted(list(set(selected_titles)))
         
         if not selected_titles:
@@ -257,7 +250,6 @@ class InputCollector:
         
         print(f"\nSelected {len(selected_titles)} job titles for searching.")
         
-        # Show confirmation
         if len(selected_titles) <= 20:
             print("Selected titles:")
             for title in selected_titles:
@@ -270,18 +262,162 @@ class InputCollector:
         
         confirm = input(f"\nProceed with these {len(selected_titles)} job titles? (y/n, default: y): ").strip().lower()
         if confirm == 'n':
-            return self.get_job_title_selection()  # Retry
+            return self.get_job_title_selection()
         
         return selected_titles
     
+    def get_location_input(self) -> dict:
+        """Get location input - simplified to always work."""
+        if not self.locations_db:
+            # No database available - simple manual input
+            while True:
+                location = input("Enter location (city, state, county, or country): ").strip()
+                if self.validate_location(location):
+                    return {
+                        'location_type': 'manual',
+                        'primary_location': location,
+                        'manual_input': True
+                    }
+                print("Invalid location. Please use 2-50 characters with letters and basic punctuation.")
+        
+        # Database available - offer enhanced selection
+        print("\n📍 Location Input Options:")
+        print("1. Use LinkedIn location database (enhanced targeting)")
+        print("2. Enter location manually (quick)")
+        
+        while True:
+            choice = input("\nSelect option (1/2, default: 2): ").strip()
+            
+            if choice == '1':
+                return self._select_from_database()
+            elif choice in ['2', '']:
+                while True:
+                    location = input("Enter location (city, state, county, or country): ").strip()
+                    if self.validate_location(location):
+                        return {
+                            'location_type': 'manual',
+                            'primary_location': location,
+                            'manual_input': True
+                        }
+                    print("Invalid location. Please use 2-50 characters with letters and basic punctuation.")
+            else:
+                print("Please enter 1 or 2")
+    
+    def _select_from_database(self) -> dict:
+        """Select location from LinkedIn database with complete implementation."""
+        try:
+            primary_markets = self.locations_db['linkedin_locations']['primary_markets']
+            
+            # Step 1: Select Region
+            print("\n🌍 Available Regions:")
+            regions = list(primary_markets.keys())
+            for i, region in enumerate(regions, 1):
+                print(f"   {i}. {region.replace('_', ' ').title()}")
+            
+            while True:
+                try:
+                    choice = input(f"\nSelect region (1-{len(regions)}): ").strip()
+                    region_idx = int(choice) - 1
+                    if 0 <= region_idx < len(regions):
+                        break
+                    print(f"Please enter 1-{len(regions)}")
+                except ValueError:
+                    print("Please enter a valid number")
+            
+            selected_region = regions[region_idx]
+            
+            # Step 2: Select Country
+            countries = list(primary_markets[selected_region].keys())
+            print(f"\n🏛️ Countries in {selected_region.replace('_', ' ').title()}:")
+            for i, country in enumerate(countries, 1):
+                print(f"   {i}. {country.replace('_', ' ').title()}")
+            
+            while True:
+                try:
+                    choice = input(f"\nSelect country (1-{len(countries)}): ").strip()
+                    country_idx = int(choice) - 1
+                    if 0 <= country_idx < len(countries):
+                        break
+                    print(f"Please enter 1-{len(countries)}")
+                except ValueError:
+                    print("Please enter a valid number")
+            
+            selected_country = countries[country_idx]
+            country_data = primary_markets[selected_region][selected_country]
+            
+            # Step 3: Select City (if available)
+            cities = list(country_data.get('cities', {}).keys())
+            
+            if cities:
+                print(f"\n🏙️ Cities in {selected_country.replace('_', ' ').title()}:")
+                for i, city in enumerate(cities, 1):
+                    print(f"   {i}. {city.replace('_', ' ').title()}")
+                
+                while True:
+                    try:
+                        choice = input(f"\nSelect city (1-{len(cities)}): ").strip()
+                        city_idx = int(choice) - 1
+                        if 0 <= city_idx < len(cities):
+                            break
+                        print(f"Please enter 1-{len(cities)}")
+                    except ValueError:
+                        print("Please enter a valid number")
+                
+                selected_city = cities[city_idx]
+                city_variations = country_data['cities'][selected_city]
+                
+                # Return city-level configuration
+                return {
+                    'location_type': 'primary_city',
+                    'primary_location': city_variations[0] if city_variations else selected_city.replace('_', ' ').title(),
+                    'city_display_name': selected_city.replace('_', ' ').title(),
+                    'country': selected_country,
+                    'country_display_name': selected_country.replace('_', ' ').title(),
+                    'region': selected_region,
+                    'city_variations': city_variations,
+                    'location_variations': city_variations,
+                    'country_search': selected_country,
+                    'manual_input': False
+                }
+            else:
+                # No cities available - return country-level configuration
+                country_terms = country_data.get('country_terms', [selected_country.replace('_', ' ').title()])
+                return {
+                    'location_type': 'secondary_country',
+                    'primary_location': country_terms[0] if country_terms else selected_country.replace('_', ' ').title(),
+                    'country': selected_country,
+                    'country_display_name': selected_country.replace('_', ' ').title(),
+                    'region': selected_region,
+                    'country_terms': country_terms,
+                    'location_variations': country_terms,
+                    'country_search': selected_country,
+                    'manual_input': False
+                }
+            
+        except Exception as e:
+            logger.warning(f"Database selection failed: {e}, falling back to manual input")
+            while True:
+                location = input("Enter location (city, state, county, or country): ").strip()
+                if self.validate_location(location):
+                    return {
+                        'location_type': 'manual',
+                        'primary_location': location,
+                        'manual_input': True
+                    }
+                print("Invalid location. Please use 2-50 characters with letters and basic punctuation.")
+    
     def get_user_input(self) -> dict:
-        """Collect and validate user input including job titles."""
+        """Collect and validate user input."""
         self.clear_screen()
         print("=" * 60)
         print("ENHANCED EMPLOYEE DISCOVERY TOOLKIT - INPUT CONFIGURATION")
         print("=" * 60)
         print("\nThis script will collect information about employees at a specific company.")
-        print("You'll be prompted for company details and can specify job titles to search for.\n")
+        print("You'll be prompted for company details and can specify job titles to search for.")
+        
+        if self.locations_db:
+            print("Enhanced with LinkedIn location database for precise targeting.")
+        print()
         
         # Get company name
         while True:
@@ -290,12 +426,8 @@ class InputCollector:
                 break
             print("Invalid company name. Please use 2-100 characters with letters, numbers, and basic punctuation.")
         
-        # Get location
-        while True:
-            location = input("Enter location (city, state, county, or country): ").strip()
-            if self.validate_location(location):
-                break
-            print("Invalid location. Please use 2-50 characters with letters and basic punctuation.")
+        # Get location configuration
+        location_config = self.get_location_input()
         
         # Get company website
         while True:
@@ -325,7 +457,8 @@ class InputCollector:
         
         return {
             "company_name": company_name,
-            "location": location,
+            "location_config": location_config,
+            "location": location_config.get('primary_location', ''),
             "company_website": website,
             "job_titles": job_titles,
             "pages_to_scrape": num_pages
@@ -334,17 +467,23 @@ class InputCollector:
     def create_config(self, user_input: dict) -> dict:
         """Create configuration dictionary."""
         company_name = user_input["company_name"]
-        location = user_input["location"]
+        location_config = user_input["location_config"]
+        
+        # Get location name for filename
+        location_name = (location_config.get('city_display_name') or 
+                        location_config.get('country_display_name') or 
+                        location_config.get('primary_location', 'Location'))
         
         # Create safe filename
         safe_company = re.sub(r'[^\w\-_]', '_', company_name)
-        safe_location = re.sub(r'[^\w\-_]', '_', location)
+        safe_location = re.sub(r'[^\w\-_]', '_', location_name)
         
         config = {
             "company_name": company_name,
-            "location": location,
+            "location": location_config.get('primary_location', ''),
+            "location_config": location_config,
             "company_website": user_input["company_website"],
-            "job_titles": user_input["job_titles"],  # This is the key fix - properly save job titles
+            "job_titles": user_input["job_titles"],
             "output_file": f"{safe_company}_{safe_location}_employees.xlsx",
             "temp_data_file": "temp_employee_data.json",
             "processed_data_file": "processed_employee_data.json",
@@ -354,7 +493,7 @@ class InputCollector:
             "review_mode": True,
             "search_types": ["linkedin", "website"],
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-            "version": "2.2"
+            "version": "2.4-Complete-Fixed"
         }
         
         return config
@@ -362,14 +501,13 @@ class InputCollector:
     def save_config(self, config: dict) -> bool:
         """Save configuration to file."""
         try:
-            # Ensure job_titles is properly saved
             if not isinstance(config.get('job_titles'), list):
                 config['job_titles'] = []
             
             with open(self.config_file, 'w', encoding='utf-8') as f:
                 json.dump(config, f, indent=4, ensure_ascii=False)
             
-            # Verify the file was saved correctly
+            # Verify save
             with open(self.config_file, 'r', encoding='utf-8') as f:
                 saved_config = json.load(f)
                 if saved_config.get('job_titles') != config.get('job_titles'):
@@ -384,45 +522,60 @@ class InputCollector:
     
     def display_summary(self, config: dict):
         """Display configuration summary."""
+        location_config = config.get('location_config', {})
+        
         print("\n" + "=" * 60)
         print("CONFIGURATION SUMMARY")
         print("=" * 60)
         print(f"Company: {config['company_name']}")
-        print(f"Location: {config['location']}")
         print(f"Website: {config['company_website']}")
         print(f"Pages to scrape: {config['pages_to_scrape']}")
         
+        # Location display
+        if location_config.get('location_type') == 'primary_city':
+            print(f"\n📍 ENHANCED LOCATION (City-Level):")
+            print(f"   City: {location_config['city_display_name']}")
+            print(f"   Country: {location_config['country'].replace('_', ' ').title()}")
+            print(f"   Location Variations: {len(location_config.get('location_variations', []))}")
+            print(f"   Primary Format: \"{location_config['primary_location']}\"")
+        elif location_config.get('location_type') == 'secondary_country':
+            print(f"\n🌍 ENHANCED LOCATION (Country-Level):")
+            print(f"   Country: {location_config['country_display_name']}")
+            print(f"   Location Terms: {len(location_config.get('country_terms', []))}")
+        else:
+            print(f"\n📍 LOCATION (Manual):")
+            print(f"   Location: {location_config.get('primary_location', config.get('location', ''))}")
+        
+        # Job titles
         job_titles = config.get('job_titles', [])
         if job_titles:
-            print(f"Job titles to search: {len(job_titles)}")
-            print(f"Search strategy: Targeted search for specific job titles")
+            print(f"\n🎯 JOB TITLES ({len(job_titles)}):")
+            print(f"   Search strategy: Targeted search for specific job titles")
             
             if len(job_titles) <= 10:
-                print(f"\nJob titles to search for:")
+                print(f"   Job titles to search for:")
                 for title in job_titles:
-                    print(f"  - {title}")
+                    print(f"     - {title}")
             else:
-                print(f"\nSample job titles to search for:")
+                print(f"   Sample job titles to search for:")
                 for title in job_titles[:5]:
-                    print(f"  - {title}")
-                print(f"  ... and {len(job_titles) - 5} more")
+                    print(f"     - {title}")
+                print(f"     ... and {len(job_titles) - 5} more")
         else:
-            print(f"Job titles to search: None specified")
-            print(f"Search strategy: General company search")
+            print(f"\n🎯 JOB TITLES: None specified")
+            print(f"   Search strategy: General company search")
         
-        print(f"\nOutput will be saved to: {config['output_file']}")
+        print(f"\n💾 Output will be saved to: {config['output_file']}")
         print("=" * 60)
     
     def launch_next_script(self) -> bool:
         """Launch the next script in the process."""
-        # Try employee discovery selector first
         selector_script = self.script_dir / "employee_discovery_selector.py"
         
         if selector_script.exists():
             script_to_launch = selector_script
             script_name = "Employee Discovery Selector"
         else:
-            # Fall back to script2 directly
             script2_path = self.script_dir / "script2_web_scraping.py"
             if script2_path.exists():
                 script_to_launch = script2_path

@@ -1,0 +1,45 @@
+{
+    "company_name": "fnz",
+    "location": "London",
+    "location_config": {
+        "location_type": "primary_city",
+        "primary_location": "London",
+        "city_display_name": "London",
+        "country": "united_kingdom",
+        "country_display_name": "United Kingdom",
+        "region": "europe",
+        "city_variations": [
+            "London",
+            "Greater London",
+            "London, UK",
+            "London, England",
+            "Central London"
+        ],
+        "location_variations": [
+            "London",
+            "Greater London",
+            "London, UK",
+            "London, England",
+            "Central London"
+        ],
+        "country_search": "united_kingdom",
+        "manual_input": false
+    },
+    "company_website": "https://fnz.com",
+    "job_titles": [
+        "sales"
+    ],
+    "output_file": "fnz_London_employees.xlsx",
+    "temp_data_file": "temp_employee_data.json",
+    "processed_data_file": "processed_employee_data.json",
+    "verified_data_file": "verified_employee_data.json",
+    "pages_to_scrape": 5,
+    "debug_mode": false,
+    "review_mode": true,
+    "search_types": [
+        "linkedin",
+        "website"
+    ],
+    "timestamp": "2025-06-12 02:16:36",
+    "version": "2.4-Complete-Fixed"
+}

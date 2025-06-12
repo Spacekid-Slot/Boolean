@@ -1,0 +1,381 @@
+{
+  "linkedin_locations": {
+    "primary_markets": {
+      "europe": {
+        "united_kingdom": {
+          "linkedin_domain": "uk.linkedin.com",
+          "country_code": "uk",
+          "country_terms": ["United Kingdom", "UK", "Britain", "England", "Scotland", "Wales", "Northern Ireland"],
+          "cities": {
+            "london": ["London", "Greater London", "London, UK", "London, England", "Central London"],
+            "edinburgh": ["Edinburgh", "Edinburgh, Scotland", "Edinburgh, UK"],
+            "manchester": ["Manchester", "Manchester, UK", "Manchester, England"],
+            "birmingham": ["Birmingham", "Birmingham, UK", "Birmingham, England"],
+            "glasgow": ["Glasgow", "Glasgow, Scotland", "Glasgow, UK"],
+            "liverpool": ["Liverpool", "Liverpool, UK", "Liverpool, England"],
+            "bristol": ["Bristol", "Bristol, UK", "Bristol, England"],
+            "leeds": ["Leeds", "Leeds, UK", "Leeds, England"],
+            "sheffield": ["Sheffield", "Sheffield, UK", "Sheffield, England"],
+            "cardiff": ["Cardiff", "Cardiff, Wales", "Cardiff, UK"],
+            "belfast": ["Belfast", "Belfast, Northern Ireland", "Belfast, UK"],
+            "nottingham": ["Nottingham", "Nottingham, UK", "Nottingham, England"],
+            "newcastle": ["Newcastle", "Newcastle upon Tyne", "Newcastle, UK"],
+            "brighton": ["Brighton", "Brighton and Hove", "Brighton, UK"]
+          }
+        },
+        "ireland": {
+          "linkedin_domain": "ie.linkedin.com",
+          "country_code": "ie",
+          "country_terms": ["Ireland", "Republic of Ireland", "Éire"],
+          "cities": {
+            "dublin": ["Dublin", "Dublin, Ireland", "Dublin City"],
+            "cork": ["Cork", "Cork, Ireland"],
+            "galway": ["Galway", "Galway, Ireland"],
+            "limerick": ["Limerick", "Limerick, Ireland"],
+            "waterford": ["Waterford", "Waterford, Ireland"]
+          }
+        },
+        "france": {
+          "linkedin_domain": "fr.linkedin.com",
+          "country_code": "fr",
+          "country_terms": ["France", "French Republic"],
+          "cities": {
+            "paris": ["Paris", "Paris, France", "Île-de-France"],
+            "lyon": ["Lyon", "Lyon, France"],
+            "marseille": ["Marseille", "Marseille, France"],
+            "toulouse": ["Toulouse", "Toulouse, France"],
+            "nice": ["Nice", "Nice, France"],
+            "nantes": ["Nantes", "Nantes, France"],
+            "bordeaux": ["Bordeaux", "Bordeaux, France"]
+          }
+        },
+        "germany": {
+          "linkedin_domain": "de.linkedin.com",
+          "country_code": "de",
+          "country_terms": ["Germany", "Deutschland"],
+          "cities": {
+            "berlin": ["Berlin", "Berlin, Germany"],
+            "munich": ["Munich", "München", "Munich, Germany"],
+            "hamburg": ["Hamburg", "Hamburg, Germany"],
+            "cologne": ["Cologne", "Köln", "Cologne, Germany"],
+            "frankfurt": ["Frankfurt", "Frankfurt am Main", "Frankfurt, Germany"],
+            "stuttgart": ["Stuttgart", "Stuttgart, Germany"],
+            "dusseldorf": ["Düsseldorf", "Dusseldorf", "Düsseldorf, Germany"]
+          }
+        },
+        "netherlands": {
+          "linkedin_domain": "nl.linkedin.com",
+          "country_code": "nl",
+          "country_terms": ["Netherlands", "Holland", "Nederland"],
+          "cities": {
+            "amsterdam": ["Amsterdam", "Amsterdam, Netherlands"],
+            "rotterdam": ["Rotterdam", "Rotterdam, Netherlands"],
+            "the_hague": ["The Hague", "Den Haag", "The Hague, Netherlands"],
+            "utrecht": ["Utrecht", "Utrecht, Netherlands"],
+            "eindhoven": ["Eindhoven", "Eindhoven, Netherlands"]
+          }
+        },
+        "spain": {
+          "linkedin_domain": "es.linkedin.com",
+          "country_code": "es",
+          "country_terms": ["Spain", "España"],
+          "cities": {
+            "madrid": ["Madrid", "Madrid, Spain"],
+            "barcelona": ["Barcelona", "Barcelona, Spain"],
+            "valencia": ["Valencia", "Valencia, Spain"],
+            "seville": ["Seville", "Sevilla", "Seville, Spain"],
+            "bilbao": ["Bilbao", "Bilbao, Spain"]
+          }
+        },
+        "italy": {
+          "linkedin_domain": "it.linkedin.com",
+          "country_code": "it",
+          "country_terms": ["Italy", "Italia"],
+          "cities": {
+            "rome": ["Rome", "Roma", "Rome, Italy"],
+            "milan": ["Milan", "Milano", "Milan, Italy"],
+            "naples": ["Naples", "Napoli", "Naples, Italy"],
+            "turin": ["Turin", "Torino", "Turin, Italy"],
+            "florence": ["Florence", "Firenze", "Florence, Italy"]
+          }
+        },
+        "switzerland": {
+          "linkedin_domain": "ch.linkedin.com",
+          "country_code": "ch",
+          "country_terms": ["Switzerland", "Schweiz", "Suisse"],
+          "cities": {
+            "zurich": ["Zurich", "Zürich", "Zurich, Switzerland"],
+            "geneva": ["Geneva", "Genève", "Geneva, Switzerland"],
+            "basel": ["Basel", "Basel, Switzerland"],
+            "bern": ["Bern", "Berne", "Bern, Switzerland"]
+          }
+        }
+      },
+      "north_america": {
+        "united_states": {
+          "linkedin_domain": "linkedin.com",
+          "country_code": "us",
+          "country_terms": ["United States", "USA", "US", "America"],
+          "cities": {
+            "new_york": ["New York", "New York City", "NYC", "New York, NY"],
+            "los_angeles": ["Los Angeles", "LA", "Los Angeles, CA"],
+            "chicago": ["Chicago", "Chicago, IL"],
+            "houston": ["Houston", "Houston, TX"],
+            "phoenix": ["Phoenix", "Phoenix, AZ"],
+            "philadelphia": ["Philadelphia", "Philly", "Philadelphia, PA"],
+            "san_antonio": ["San Antonio", "San Antonio, TX"],
+            "san_diego": ["San Diego", "San Diego, CA"],
+            "dallas": ["Dallas", "Dallas, TX"],
+            "san_jose": ["San Jose", "San Jose, CA"],
+            "austin": ["Austin", "Austin, TX"],
+            "jacksonville": ["Jacksonville", "Jacksonville, FL"],
+            "san_francisco": ["San Francisco", "SF", "San Francisco, CA"],
+            "columbus": ["Columbus", "Columbus, OH"],
+            "charlotte": ["Charlotte", "Charlotte, NC"],
+            "fort_worth": ["Fort Worth", "Fort Worth, TX"],
+            "indianapolis": ["Indianapolis", "Indianapolis, IN"],
+            "seattle": ["Seattle", "Seattle, WA"],
+            "denver": ["Denver", "Denver, CO"],
+            "washington": ["Washington", "Washington DC", "DC", "Washington, DC"],
+            "boston": ["Boston", "Boston, MA"],
+            "el_paso": ["El Paso", "El Paso, TX"],
+            "detroit": ["Detroit", "Detroit, MI"],
+            "nashville": ["Nashville", "Nashville, TN"],
+            "portland": ["Portland", "Portland, OR"],
+            "memphis": ["Memphis", "Memphis, TN"],
+            "oklahoma_city": ["Oklahoma City", "Oklahoma City, OK"],
+            "las_vegas": ["Las Vegas", "Vegas", "Las Vegas, NV"],
+            "louisville": ["Louisville", "Louisville, KY"],
+            "baltimore": ["Baltimore", "Baltimore, MD"],
+            "milwaukee": ["Milwaukee", "Milwaukee, WI"],
+            "albuquerque": ["Albuquerque", "Albuquerque, NM"],
+            "tucson": ["Tucson", "Tucson, AZ"],
+            "fresno": ["Fresno", "Fresno, CA"],
+            "mesa": ["Mesa", "Mesa, AZ"],
+            "sacramento": ["Sacramento", "Sacramento, CA"],
+            "atlanta": ["Atlanta", "Atlanta, GA"],
+            "kansas_city": ["Kansas City", "Kansas City, MO"],
+            "colorado_springs": ["Colorado Springs", "Colorado Springs, CO"],
+            "miami": ["Miami", "Miami, FL"],
+            "raleigh": ["Raleigh", "Raleigh, NC"],
+            "omaha": ["Omaha", "Omaha, NE"],
+            "long_beach": ["Long Beach", "Long Beach, CA"],
+            "virginia_beach": ["Virginia Beach", "Virginia Beach, VA"],
+            "oakland": ["Oakland", "Oakland, CA"],
+            "minneapolis": ["Minneapolis", "Minneapolis, MN"],
+            "tulsa": ["Tulsa", "Tulsa, OK"],
+            "tampa": ["Tampa", "Tampa, FL"],
+            "arlington": ["Arlington", "Arlington, TX"],
+            "new_orleans": ["New Orleans", "New Orleans, LA"]
+          }
+        },
+        "canada": {
+          "linkedin_domain": "ca.linkedin.com",
+          "country_code": "ca",
+          "country_terms": ["Canada"],
+          "cities": {
+            "toronto": ["Toronto", "Toronto, ON", "Toronto, Ontario"],
+            "montreal": ["Montreal", "Montréal", "Montreal, QC"],
+            "vancouver": ["Vancouver", "Vancouver, BC"],
+            "calgary": ["Calgary", "Calgary, AB"],
+            "edmonton": ["Edmonton", "Edmonton, AB"],
+            "ottawa": ["Ottawa", "Ottawa, ON"],
+            "winnipeg": ["Winnipeg", "Winnipeg, MB"],
+            "quebec_city": ["Quebec City", "Québec", "Quebec City, QC"],
+            "hamilton": ["Hamilton", "Hamilton, ON"],
+            "kitchener": ["Kitchener", "Kitchener, ON"]
+          }
+        }
+      },
+      "asia_pacific": {
+        "australia": {
+          "linkedin_domain": "au.linkedin.com",
+          "country_code": "au",
+          "country_terms": ["Australia"],
+          "cities": {
+            "sydney": ["Sydney", "Sydney, NSW"],
+            "melbourne": ["Melbourne", "Melbourne, VIC"],
+            "brisbane": ["Brisbane", "Brisbane, QLD"],
+            "perth": ["Perth", "Perth, WA"],
+            "adelaide": ["Adelaide", "Adelaide, SA"],
+            "gold_coast": ["Gold Coast", "Gold Coast, QLD"],
+            "canberra": ["Canberra", "Canberra, ACT"],
+            "newcastle": ["Newcastle", "Newcastle, NSW"],
+            "wollongong": ["Wollongong", "Wollongong, NSW"],
+            "geelong": ["Geelong", "Geelong, VIC"]
+          }
+        },
+        "new_zealand": {
+          "linkedin_domain": "nz.linkedin.com",
+          "country_code": "nz",
+          "country_terms": ["New Zealand"],
+          "cities": {
+            "auckland": ["Auckland", "Auckland, New Zealand"],
+            "wellington": ["Wellington", "Wellington, New Zealand"],
+            "christchurch": ["Christchurch", "Christchurch, New Zealand"],
+            "hamilton": ["Hamilton", "Hamilton, New Zealand"],
+            "tauranga": ["Tauranga", "Tauranga, New Zealand"]
+          }
+        },
+        "singapore": {
+          "linkedin_domain": "sg.linkedin.com",
+          "country_code": "sg",
+          "country_terms": ["Singapore"],
+          "cities": {
+            "singapore": ["Singapore"]
+          }
+        },
+        "hong_kong": {
+          "linkedin_domain": "hk.linkedin.com",
+          "country_code": "hk",
+          "country_terms": ["Hong Kong", "HK"],
+          "cities": {
+            "hong_kong": ["Hong Kong", "Hong Kong SAR"]
+          }
+        },
+        "japan": {
+          "linkedin_domain": "jp.linkedin.com",
+          "country_code": "jp",
+          "country_terms": ["Japan", "日本"],
+          "cities": {
+            "tokyo": ["Tokyo", "東京", "Tokyo, Japan"],
+            "osaka": ["Osaka", "大阪", "Osaka, Japan"],
+            "yokohama": ["Yokohama", "横浜", "Yokohama, Japan"],
+            "nagoya": ["Nagoya", "名古屋", "Nagoya, Japan"],
+            "sapporo": ["Sapporo", "札幌", "Sapporo, Japan"],
+            "fukuoka": ["Fukuoka", "福岡", "Fukuoka, Japan"],
+            "kyoto": ["Kyoto", "京都", "Kyoto, Japan"]
+          }
+        }
+      },
+      "latin_america": {
+        "brazil": {
+          "linkedin_domain": "br.linkedin.com",
+          "country_code": "br",
+          "country_terms": ["Brazil", "Brasil"],
+          "cities": {
+            "sao_paulo": ["São Paulo", "Sao Paulo", "São Paulo, Brazil"],
+            "rio_de_janeiro": ["Rio de Janeiro", "Rio", "Rio de Janeiro, Brazil"],
+            "brasilia": ["Brasília", "Brasilia", "Brasília, Brazil"],
+            "salvador": ["Salvador", "Salvador, Brazil"],
+            "fortaleza": ["Fortaleza", "Fortaleza, Brazil"],
+            "belo_horizonte": ["Belo Horizonte", "Belo Horizonte, Brazil"],
+            "manaus": ["Manaus", "Manaus, Brazil"],
+            "curitiba": ["Curitiba", "Curitiba, Brazil"],
+            "recife": ["Recife", "Recife, Brazil"],
+            "porto_alegre": ["Porto Alegre", "Porto Alegre, Brazil"]
+          }
+        },
+        "mexico": {
+          "linkedin_domain": "mx.linkedin.com",
+          "country_code": "mx",
+          "country_terms": ["Mexico", "México"],
+          "cities": {
+            "mexico_city": ["Mexico City", "Ciudad de México", "CDMX", "Mexico City, Mexico"],
+            "guadalajara": ["Guadalajara", "Guadalajara, Mexico"],
+            "monterrey": ["Monterrey", "Monterrey, Mexico"],
+            "puebla": ["Puebla", "Puebla, Mexico"],
+            "tijuana": ["Tijuana", "Tijuana, Mexico"],
+            "leon": ["León", "Leon", "León, Mexico"],
+            "juarez": ["Ciudad Juárez", "Juarez", "Ciudad Juárez, Mexico"]
+          }
+        },
+        "argentina": {
+          "linkedin_domain": "ar.linkedin.com",
+          "country_code": "ar",
+          "country_terms": ["Argentina"],
+          "cities": {
+            "buenos_aires": ["Buenos Aires", "Buenos Aires, Argentina"],
+            "cordoba": ["Córdoba", "Cordoba", "Córdoba, Argentina"],
+            "rosario": ["Rosario", "Rosario, Argentina"],
+            "mendoza": ["Mendoza", "Mendoza, Argentina"],
+            "tucuman": ["San Miguel de Tucumán", "Tucumán", "Tucuman, Argentina"]
+          }
+        }
+      },
+      "middle_east_africa": {
+        "south_africa": {
+          "linkedin_domain": "za.linkedin.com",
+          "country_code": "za",
+          "country_terms": ["South Africa"],
+          "cities": {
+            "johannesburg": ["Johannesburg", "Joburg", "Johannesburg, South Africa"],
+            "cape_town": ["Cape Town", "Cape Town, South Africa"],
+            "durban": ["Durban", "Durban, South Africa"],
+            "pretoria": ["Pretoria", "Pretoria, South Africa"],
+            "port_elizabeth": ["Port Elizabeth", "Port Elizabeth, South Africa"]
+          }
+        },
+        "uae": {
+          "linkedin_domain": "ae.linkedin.com",
+          "country_code": "ae",
+          "country_terms": ["United Arab Emirates", "UAE"],
+          "cities": {
+            "dubai": ["Dubai", "Dubai, UAE"],
+            "abu_dhabi": ["Abu Dhabi", "Abu Dhabi, UAE"],
+            "sharjah": ["Sharjah", "Sharjah, UAE"],
+            "ajman": ["Ajman", "Ajman, UAE"]
+          }
+        },
+        "israel": {
+          "linkedin_domain": "il.linkedin.com",
+          "country_code": "il",
+          "country_terms": ["Israel"],
+          "cities": {
+            "tel_aviv": ["Tel Aviv", "Tel Aviv-Yafo", "Tel Aviv, Israel"],
+            "jerusalem": ["Jerusalem", "Jerusalem, Israel"],
+            "haifa": ["Haifa", "Haifa, Israel"],
+            "rishon_lezion": ["Rishon LeZion", "Rishon Lezion", "Rishon LeZion, Israel"]
+          }
+        }
+      },
+      "other_markets": {
+        "india": {
+          "linkedin_domain": "in.linkedin.com",
+          "country_code": "in",
+          "country_terms": ["India", "भारत"],
+          "cities": {
+            "mumbai": ["Mumbai", "Bombay", "Mumbai, India"],
+            "delhi": ["Delhi", "New Delhi", "Delhi, India"],
+            "bangalore": ["Bangalore", "Bengaluru", "Bangalore, India"],
+            "hyderabad": ["Hyderabad", "Hyderabad, India"],
+            "ahmedabad": ["Ahmedabad", "Ahmadabad", "Ahmedabad, India"],
+            "chennai": ["Chennai", "Madras", "Chennai, India"],
+            "kolkata": ["Kolkata", "Calcutta", "Kolkata, India"],
+            "surat": ["Surat", "Surat, India"],
+            "pune": ["Pune", "Poona", "Pune, India"],
+            "jaipur": ["Jaipur", "Jaipur, India"]
+          }
+        },
+        "china": {
+          "linkedin_domain": "linkedin.com",
+          "country_code": "cn",
+          "country_terms": ["China", "中国"],
+          "cities": {
+            "beijing": ["Beijing", "北京", "Beijing, China"],
+            "shanghai": ["Shanghai", "上海", "Shanghai, China"],
+            "guangzhou": ["Guangzhou", "广州", "Guangzhou, China"],
+            "shenzhen": ["Shenzhen", "深圳", "Shenzhen, China"],
+            "tianjin": ["Tianjin", "天津", "Tianjin, China"],
+            "wuhan": ["Wuhan", "武汉", "Wuhan, China"],
+            "xi_an": ["Xi'an", "西安", "Xi'an, China"],
+            "chengdu": ["Chengdu", "成都", "Chengdu, China"],
+            "dongguan": ["Dongguan", "东莞", "Dongguan, China"],
+            "nanjing": ["Nanjing", "南京", "Nanjing, China"]
+          }
+        }
+      }
+    },
+    "metadata": {
+      "version": "1.0",
+      "last_updated": "2025-06-11",
+      "description": "LinkedIn country-specific domains and location variations for enhanced targeting",
+      "usage_notes": [
+        "Use linkedin_domain for country-specific searches (e.g., site:uk.linkedin.com/in/)",
+        "city variations provide multiple search terms for the same location",
+        "country_terms offer broader location targeting when city-specific data isn't needed",
+        "Fallback to linkedin.com for countries without specific domains"
+      ]
+    }
+  }
+}
